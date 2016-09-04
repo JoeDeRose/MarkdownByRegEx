@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Markdown Parser</title>
+
+<style>
+	html, body {
+		height: 100%;
+		font-family:Arial, Helvetica, sans-serif;
+	}
+	.Display {
+		width: 47%;
+		height: 40%;
+		border: 1px solid black;
+	}
+	.DisplayArea {
+		width: 100%;
+		height: 40%;
+	}
+	.DisplayDiv {
+		float: left;
+		width: 49%;
+		height: 100%;
+	}
+	.DisplayResult {
+		width: 95%;
+		min-height: 100%;
+		border: 1px solid black;
+		padding: 0.5em;
+	}
+    .Hidden {
+        display: none;
+    }
+</style>
+
+</head>
+
+<body>
+
+<script src="jquery-min.js"></script>
+
+<strong>Source Markdown</strong><br />
+<textarea id="SourceText" class="Display SelectSourceListener ExitSourceListener" ></textarea>
+<textarea id="ExampleText" class="Hidden" >
+This is a test of a multiline paragraph with various features, including:
+\* an escaped asterisk (at the beginning of a line, to avoid processing as a bullet)
+a [hyperlink without a scheme](about.joederose.us) and [one with a scheme](http://about.joederose.us)
+an image: ![JD logo](http://about.joederose.us/files/JD%20-%20Small.jpg)
+an inline abbreviation (hover for full text): ^[HTML](HyperText Markup Language)
+'single' and "double" quotation marks
+<Angle Brackets>
+_Italic_ text
+**Bold** text
+~~Strikethrough~~ text
+`code snippets`  
+a line with a continuation marker so it does not _
+get broken into multiple lines
+a forced mid-line line break ## using the double-#
+-- n-dashes -- at the beginning, middle, and end --
+
+# Header 1 (With Pound Sign)
+
+## Header 2 (With Pound Signs)
+
+### Header 3 (With Pound Signs)
+
+#### Header 4 (With Pound Signs)
+
+##### Header 5 (With Pound Signs)
+
+###### Header 6 (With Pound Signs)
+
+Header 1 (With Equals Signs)
+===
+
+Header 2 (With Hyphens)
+---
+
+> Indented
+> paragraph
+ 	 
+> with 
+> multiple (sometimes interrupted)
+
+> lines
+
+  Non-blockquote line
+
+> Single indented line
+
+
+```
+several
+ lines
+  of
+   preformatted
+    code
+     framed
+      by
+       backticks
+
+   
+   
+        (after 3 blank lines)
+```
+
+    several
+     lines
+      of
+       preformatted
+        code
+         preceded
+          by
+           spaces
+
+
+Horizontal lines with hyphens, asterisks, and underscores:
+
+-  -  -
+
+* * *
+
+___
+
+A table (this example page includes no CSS styling for the lines between cells):
+
++--------------+--------------+--------------+
+| Table Head A | Table Head B | Table Head C |
++--------------+--------------+--------------+
+| Item A1      | Item B1      | Item C1      |
+| Item A3      | Item B2      | Item C2      |
++--------------+--------------+--------------+
+
+Ordered and unordered lists:
+
+* Test A
+* Test B  
+  (with a line break)
+* Test C
+  1. Test C1
+  1. Test C2
+  1. Test C3
+    * Test C3a
+      1. Test C3a(i)
+      1. Test C3a(ii)
+    * Test C3b
+* Test D
+
+</textarea>
+
+<p>
+    <input id="ParseTextButton" class="ParseTextListener" type="button" value="Parse as Markdown">
+    (If the Source Markdown box is empty, this will insert and parse a complex example.)
+</p>
+
+<div class="DisplayArea" >
+		<div class="DisplayDiv" >
+			<strong>Result HTML</strong><br />
+			<textarea id="ParsedSource" class="DisplayResult" ></textarea>
+		</div>
+		<div class="DisplayDiv" >
+			<strong>Result as Displayed (without any non-native styling)</strong><br />
+			<div id="ParsedResult" class="DisplayResult" ></div>
+		</div>
+</div>
+
+<script src="ParseMarkdown.js"></script>
+<script>
+function ProcessContent() {
+	Content = $( "#SourceText" ).val();
+    Content = ParseMarkdown( Content );
+	$( "#ParsedSource" ).html( Content );
+	$( "#ParsedResult" ).html( Content );
+}
+
+$( "body" ).on(
+	"click",
+		// Options include standard events (change, keydown, keypress, keyup, mouseover, mouseout, click, dblclick, submit) as well as custom events.
+		// (Note that "keypress" is only triggered by character keys, while "keydown" is also triggered by modifier keys such as SHIFT, CTRL, and ALT.)
+		// Full list is at http://api.jquery.com/category/events/
+	".ParseTextListener",
+	function() {
+        if ( $( "#SourceText" ).val() == "" ) {
+            $( "#SourceText" ).val( $( "#ExampleText" ).val() );
+        }
+		ProcessContent();
+	}
+);
+
+$( "body" ).on(
+	"click",
+		// Options include standard events (change, keydown, keypress, keyup, mouseover, mouseout, click, dblclick, submit) as well as custom events.
+		// (Note that "keypress" is only triggered by character keys, while "keydown" is also triggered by modifier keys such as SHIFT, CTRL, and ALT.)
+		// Full list is at http://api.jquery.com/category/events/
+	".SelectSourceListener",
+	function() {
+        $( "#SourceText" ).select();
+	}
+);
+
+$( "body" ).on(
+	"blur",
+		// Options include standard events (change, keydown, keypress, keyup, mouseover, mouseout, click, dblclick, submit) as well as custom events.
+		// (Note that "keypress" is only triggered by character keys, while "keydown" is also triggered by modifier keys such as SHIFT, CTRL, and ALT.)
+		// Full list is at http://api.jquery.com/category/events/
+	".ExitSourceListener",
+	function() {
+		ProcessContent();
+	}
+);
+
+$( "#SourceText" ).focus();
+ProcessContent();
+
+</script>
+
+</body>
+</html>
