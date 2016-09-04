@@ -6,7 +6,7 @@ This project was rooted in 2 goals:
 
   * Replacing "--" with "&ndash";
   * Replacing single and double quotes with their left- and right-quote equivalents;
-  * Creating a mechanism for writing <abbr> tags around inline abbreviations -- which I style at ^[IA](Inline Abbreviation)
+  * Placing <abbr> tags around inline abbreviations -- which I style as ^[IA](Inline Abbreviation)
   * Continuation markers ("_" or "\") at the end of a line to make text flow without a line break;
   * Insertion of non-breaking spaces or non-breaking hyphens, respectively with "\ " or "\-".
   * Tables (as used in Pivotal Tracker markdown, but not common in other markdown implementations).
@@ -15,7 +15,7 @@ The markdown recognizes all constructs with which I am familiar for basic text l
 
 (1) Unordered lists can begin with asterisks, hyphens, or plus signs.
 
-(2) Ordered and unordered lists can continue with asterisks, hyphens, or plus signs.
+(2) Ordered and unordered lists can continue with asterisks, hyphens, or plus signs. (Currently it espects indents to be exactly 2 spaces.)
 
 (3) Preformatted text can begin with 4 spaces, or be framed by 3 backticks (```).
 
