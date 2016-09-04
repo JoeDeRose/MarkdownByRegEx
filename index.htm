@@ -53,20 +53,23 @@
         <textarea id="SourceText" class="Display SelectSourceListener ExitSourceListener" ></textarea>
         <textarea id="ExampleText" class="Hidden" >
 This is a test of a multiline paragraph with various features, including:
-\* an escaped asterisk (at the beginning of a line, to avoid processing as a bullet)
-a [hyperlink without a scheme](about.joederose.us) and [one with a scheme](http://about.joederose.us)
-an image: ![JD logo](http://about.joederose.us/files/JD%20-%20Small.jpg)
-an inline abbreviation (hover for full text): ^[HTML](HyperText Markup Language)
-'single' and "double" quotation marks
-<Angle Brackets>
-_Italic_ text
-**Bold** text
-~~Strikethrough~~ text
-`code snippets`  
-a line with a continuation marker so it does not _
+Preserve ampersands: The less-than character is &amp;lt;
+\* Precede with a backslash to preserve characters (such as the asterisk at the beginning of this line, to avoid processing as a bullet)
+A backslash before a hyphen is a non-breaking hyphen: Alabama\-Alaska\-Arizona\-Arkansas
+A backslash before a space is a non-breaking space: Newfoundland\ and\ Labrador
+Show hyperlinks, both [without a scheme](about.joederose.us) and [with a scheme](http://about.joederose.us)
+Show images: ![JD logo](http://about.joederose.us/files/JD%20-%20Small.jpg)
+Show inline abbreviations (hover for full text): ^[HTML](HyperText Markup Language)
+Transform 'single' and "double" quotation marks
+Preserve <Angle Brackets>
+Show _italic_ text
+Show **bold** text
+Show ~~strikethrough~~ text
+Show `<code>code snippets</code>`  
+Allow a continuation marker at the end of a line so it does not _
 get broken into multiple lines
-a forced mid-line line break ## using the double-#
--- n-dashes -- at the beginning, middle, and end --
+Force breaking into multiple lines ## using the double-#
+Show double hyphens as en-dashes: --
 
 # Header 1 (With Pound Sign)
 

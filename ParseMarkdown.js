@@ -8,23 +8,29 @@ function ParseMarkdown( Content ) {
     // (A01)
 	Content = "\r\n\r\n" + Content + "\r\n\r\n";
     // (A02)
+    Content = Content.replace( /&/g, "&amp;" );
+    // (A03)
+    Content = Content.replace( /\\-/g, "&#8209;" );
+    // (A04)
+    Content = Content.replace( /\\ /g, "&nbsp;" );
+    // (A05)
 	Content = Content.replace(
 		/\\(.)/g,
 		function( match, p1 ) {
 			return "&#" + p1.charCodeAt( 0 ) + ";";
 		}
 	);
-    // (A03)
-	Content = Content.replace( /</g, "&lt;" );
-    // (A04)
-	Content = Content.replace( /(.)>/gm, "$1&gt;" );
-    // (A05)
-	Content = Content.replace( /(^|\s)"/g, "$1&ldquo;" );
     // (A06)
-	Content = Content.replace( /"/g, "&rdquo;" );
+	Content = Content.replace( /</g, "&lt;" );
     // (A07)
-	Content = Content.replace( /(^|\s)'/g, "$1&lsquo;" );
+	Content = Content.replace( /(.)>/gm, "$1&gt;" );
     // (A08)
+	Content = Content.replace( /(^|\s)"/g, "$1&ldquo;" );
+    // (A09)
+	Content = Content.replace( /"/g, "&rdquo;" );
+    // (A10)
+	Content = Content.replace( /(^|\s)'/g, "$1&lsquo;" );
+    // (A11)
 	Content = Content.replace( /'/g, "&rsquo;" );
 
     // ----------------------------------------------------------------------

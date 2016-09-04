@@ -8,6 +8,7 @@ This project was rooted in 2 goals:
   * Replacing single and double quotes with their left- and right-quote equivalents;
   * Creating a mechanism for writing <abbr> tags around inline abbreviations -- which I style at ^[IA](Inline Abbreviation)
   * Continuation markers ("_" or "\") at the end of a line to make text flow without a line break;
+  * Insertion of non-breaking spaces or non-breaking hyphens, respectively with "\ " or "\-".
   * Tables (as used in Pivotal Tracker markdown, but not common in other markdown implementations).
 
 The markdown recognizes all constructs with which I am familiar for basic text layout:
@@ -52,24 +53,43 @@ General 1
 
 (A01) Put \r\n\r\n at beginning and end to simplify logic for other functions:
 
-(A02) Escape characters preceded by a backslash:
+(A02) Replace ampersand (&) with "&amp;":
+Initial markup is:
+    The less-than character is &lt;
+Result of the above:
+    The less-than character is &amp;lt;
+(Note that in the Example.htm textbox result it is displayed by the browser as a regular ampersand.)
+
+(A03) Replace "\-" with a non-breaking hyphen ("&#8209;"):
+Initial markup is:
+    non\-breaking hyphen
+Result of the above:
+    non&#8209;breaking hyphen
+
+(A03) Replace "\ " with a non-breaking hyphen ("&nbsp;"):
+Initial markup is:
+    non-breaking\ space
+Result of the above:
+    non-breaking&nbsp;space
+
+(A05) Escape characters preceded by a backslash:
 Initial markup is:
     \* This is a test of an escaped asterisk.
 Result of the above:
     &#42; This is a test of an escaped asterisk.
 (Note that in the Example.htm textbox result it is displayed by the browser as a regular asterisk.)
 
-(A03) Escape "<":
+(A06) Escape "<":
 
-(A04) Escape ">":
+(A07) Escape ">":
 
-(A05) Replace """ before a word with "&ldquo;":
+(A08) Replace """ before a word with "&ldquo;":
 
-(A06) Replace """ elsewhere with "&rdquo;":
+(A00) Replace """ elsewhere with "&rdquo;":
 
-(A07) Replace "'" before a word with "&lsquo;":
+(A10) Replace "'" before a word with "&lsquo;":
 
-(A08) Replace "'" elsewhere with "&rsquo;":
+(A11) Replace "'" elsewhere with "&rsquo;":
 
 
 ======================================================================
