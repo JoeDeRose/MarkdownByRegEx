@@ -52,7 +52,7 @@ function ParseMarkdown( Content ) {
     // Horizontal Rule
     // ----------------------------------------------------------------------
     // (C01)
-	ThisRegExp = new RegExp( /^([\-\*_] *){3,}$/, "gm" );
+	ThisRegExp = /^([\-\*_] *){3,}$/gm;
 	while ( ThisRegExp.test( Content ) ) {
 		Content = Content.replace( ThisRegExp, "\r\n<hr />\r\n" );
 	}
@@ -89,24 +89,24 @@ function ParseMarkdown( Content ) {
     // (E09)
 	Content = Content.replace( /(<ul>|<ol>)(?=(<ul>|<ol>)*$)/gm, "<close>" );
     // (E10)
-	ThisRegExp = new RegExp( /<close>(\r?\n)(<ul>|<ol>)/, "g" );
+	ThisRegExp = /<close>(\r?\n)(<ul>|<ol>)/g;
 	while ( ThisRegExp.test( Content ) ) {
 		Content = Content.replace( ThisRegExp, "$1" );
 	}
     // (E11)
-	ThisRegExp = new RegExp( /<\/li>(\r?\n(<ul>|<ol>).+)$/, "gm" );
+	ThisRegExp = /<\/li>(\r?\n(<ul>|<ol>).+)$/gm;
 	while ( ThisRegExp.test( Content ) ) {
 		Content = Content.replace( ThisRegExp, "$1</li>" );
 	}
     // (E12)
-	ThisRegExp = new RegExp( /<\/li><\/li>(\r?\n.+?<\/li><close>)(?=((<close>)+|$))/, "gm" );
+	ThisRegExp = /<\/li><\/li>(\r?\n.+?<\/li><close>)(?=((<close>)+|$))/gm;
 	while ( ThisRegExp.test( Content ) ) {
 		Content = Content.replace( ThisRegExp, "</li>$1</li>" );
 	}
     // (E13)
 	Content = Content.replace( /((<ul>|<ol>|<li>).+)\r?\n(?=(<ul>|<ol>|<li>))/g, "$1" );
     // (E14)
-	ThisRegExp = new RegExp( /<(ul|ol)>(.+)<close>/, "g" );
+	ThisRegExp = /<(ul|ol)>(.+)<close>/g;
 	while ( ThisRegExp.test( Content ) ) {
 		Content = Content.replace( ThisRegExp, "<$1-open>$2</$1>" );
 	}
@@ -119,7 +119,7 @@ function ParseMarkdown( Content ) {
     // (F01)
     Content = Content.replace( /```(\r?\n)?((\r|\n|.)+?)(\r?\n)?```/g, "<pre>$2$4</pre>" );
     // (F02)
-	ThisRegExp = new RegExp( /(<pre>.*?)(\r?\n)(?!<\/pre>)/, "g" );
+	ThisRegExp = /(<pre>.*?)(\r?\n)(?!<\/pre>)/g;
 	while ( ThisRegExp.test( Content ) ) {
 		Content = Content.replace( ThisRegExp, "$1$2</pre>$2<pre>" );
 	}
@@ -150,7 +150,7 @@ function ParseMarkdown( Content ) {
     // (H06)
 	Content = Content.replace( /\| *(.*?) *\|\r?\n/g, "<tr_><td_>$1</td_></tr_>\r\n" );
     // (H07)
-	ThisRegExp = new RegExp( /(<td_>.*?) *\| */, "g" );
+	ThisRegExp = /(<td_>.*?) *\| */g;
 	while ( ThisRegExp.test( Content ) ) {
 		Content = Content.replace( ThisRegExp, "$1</td_><td_>" );
 	}
@@ -165,7 +165,7 @@ function ParseMarkdown( Content ) {
     // (H12)
 	Content = Content.replace( /(<tbody_>.*?)(<\/table_>)/g, "$1</tbody_>$2" );
     // (H13)
-	ThisRegExp = new RegExp( /(<thead_>.*?<\/?)td(_>)(?=.*<\/thead_>)/, "g" );
+	ThisRegExp = /(<thead_>.*?<\/?)td(_>)(?=.*<\/thead_>)/g;
 	while ( ThisRegExp.test( Content ) ) {
 		Content = Content.replace( ThisRegExp, "$1th$2" );
 	}
