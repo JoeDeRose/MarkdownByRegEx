@@ -66,30 +66,36 @@ Initial markup is:
 Result of the above:
     non&#8209;breaking hyphen
 
-(A03) Replace "\ " with a non-breaking hyphen ("&nbsp;"):
+(A04) Replace "\ " with a non-breaking hyphen ("&nbsp;"):
 Initial markup is:
     non-breaking\ space
 Result of the above:
     non-breaking&nbsp;space
 
-(A05) Escape characters preceded by a backslash:
+(A05) Replace "\." with a zero-width space ("&#8203;"):
+Initial markup is:
+    zero-\.width space
+Result of the above:
+    zero-&#8203;width space
+
+(A06) Escape characters preceded by a backslash:
 Initial markup is:
     \* This is a test of an escaped asterisk.
 Result of the above:
     &#42; This is a test of an escaped asterisk.
 (Note that in the Example.htm textbox result it is displayed by the browser as a regular asterisk.)
 
-(A06) Escape "<":
+(A07) Escape "<":
 
-(A07) Escape ">":
+(A08) Escape ">":
 
-(A08) Replace """ before a word with "&ldquo;":
+(A00) Replace """ before a word with "&ldquo;":
 
-(A00) Replace """ elsewhere with "&rdquo;":
+(A10) Replace """ elsewhere with "&rdquo;":
 
-(A10) Replace "'" before a word with "&lsquo;":
+(A11) Replace "'" before a word with "&lsquo;":
 
-(A11) Replace "'" elsewhere with "&rsquo;":
+(A12) Replace "'" elsewhere with "&rsquo;":
 
 
 ======================================================================
@@ -584,41 +590,48 @@ Result of the above:
 General 2
 ======================================================================
 
-(I01) Remove whitespace in lines with no non-whitespace characters:
+(I01) Remove whitespace in lines with no non-whitespace characters.
 
-(I02) Remove whitespace from beginnings of lines:
+(I02) Remove whitespace from beginnings of lines.
 
-(I03) Remove whitespace from ends of lines:
+(I03) Remove whitespace from ends of lines.
 
-(I04) Remove extra linefeeds when there are more than 2 between lines with content:
+(I04) Remove extra linefeeds when there are more than 2 between lines with content.
 
-(I05) Put <p> between remaining items without block tags:
+(I05) Put <p> between remaining items without block tags.
 
-(I06) Put <p> before remaining items without block tags:
+(I06) Put <p> before remaining items without block tags.
 
-(I07) Put <p> after remaining items without block tags:
+(I07) Put <p> after remaining items without block tags.
 
-(I08) Replace remaining line feeds in text with <br />:
+(I08) Replace remaining line feeds in text with <br />.
 
-(I09) Format italics (framed by "_"):
+(I09) Format italics (framed by "_").
 
-(I10) Format bold (framed by "**"):
+(I10) Format bold (framed by "**").
 
-(I11) Format strikethrough (framed by "~~"):
+(I11) Format strikethrough (framed by "~~").
 
-(I12) Format code (framed by "`"):
+(I12) Format code (framed by "`").
 
-(I13) Replace "--" with "&ndash;":
+(I13) Replace "--" with "&ndash;".
 
-(I14) Render abbreviations:
+(I14) Render abbreviations.
 
-(I15) Render images:
+(I15) Render images.
 
-(I16) Render hyperlinks and e-mails from markdown:
+(I16) Render hyperlinks and e-mails from markdown.
 
-(I17) Render hyperlinks in text:
+(I17) Render hyperlinks in text.
 
-(I18) Render e-mails in text:
+(I18) Render e-mails in text.
+
+(I19) Replace ampersand-prefixed HTML characters with their actual characters:
+Initial markup is:
+    This is a bullet: (&bull;)
+Result of the above:
+    This is a bullet: &bull;
+
 
 
 ======================================================================

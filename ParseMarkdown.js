@@ -14,23 +14,25 @@ function ParseMarkdown( Content ) {
     // (A04)
     Content = Content.replace( /\\ /g, "&nbsp;" );
     // (A05)
+    Content = Content.replace( /\\\./g, "&#8203;" );
+    // (A06)
 	Content = Content.replace(
 		/\\(.)/g,
 		function( match, p1 ) {
 			return "&#" + p1.charCodeAt( 0 ) + ";";
 		}
 	);
-    // (A06)
-	Content = Content.replace( /</g, "&lt;" );
     // (A07)
-	Content = Content.replace( /(.)>/gm, "$1&gt;" );
+	Content = Content.replace( /</g, "&lt;" );
     // (A08)
-	Content = Content.replace( /(^|\s)"/g, "$1&ldquo;" );
+	Content = Content.replace( /(.)>/gm, "$1&gt;" );
     // (A09)
-	Content = Content.replace( /"/g, "&rdquo;" );
+	Content = Content.replace( /(^|\s)"/g, "$1&ldquo;" );
     // (A10)
-	Content = Content.replace( /(^|\s)'/g, "$1&lsquo;" );
+	Content = Content.replace( /"/g, "&rdquo;" );
     // (A11)
+	Content = Content.replace( /(^|\s)'/g, "$1&lsquo;" );
+    // (A12)
 	Content = Content.replace( /'/g, "&rsquo;" );
 
     // ----------------------------------------------------------------------
@@ -230,6 +232,8 @@ function ParseMarkdown( Content ) {
 	Content = Content.replace( /(^|\s)(https?:\/\/.*?)(?=[\.,\?!:;\(\)\[\]\|_\-]*(\s|<|$))/gm, "$1<a href=\"$2\" >$2</a>" );
     // (I18)
 	Content = Content.replace( /(^|\s)([^ ]*?@.*?)(?=[\.,\?!:;\(\)\[\]\|_\-]*(\s|<|$))/gm, "$1<a href=\"mailto:$2\" >$2</a>" );
+    // (I19)
+    Content = Content.replace( /\(&amp;(.+?;)\)/g, "&$1" );
         
     // ----------------------------------------------------------------------
     // Preformatted 2
